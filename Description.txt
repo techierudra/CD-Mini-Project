@@ -1,0 +1,15 @@
+Calculator
+
+A Compiler to evaluate mathmatic expressions.
+
+Both integer and float numbers and also negative numbers are supported.
+
+
+Supported Operation
+
+Addition +
+Subtraction -
+Multiplication *
+Division /
+Exponentiation p -- Note the Character!
+Parantheses ( )

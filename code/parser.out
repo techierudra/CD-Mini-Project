@@ -1,0 +1,409 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> E
+Rule 1     E -> E PLUS T
+Rule 2     E -> E MINUS T
+Rule 3     E -> T
+Rule 4     T -> T MUL F
+Rule 5     T -> T DIV F
+Rule 6     T -> F
+Rule 7     F -> G POWER F
+Rule 8     F -> MINUS G
+Rule 9     F -> G
+Rule 10    G -> NUM
+Rule 11    G -> LEFTPAR E RIGHTPAR
+Rule 12    NUM -> INT
+Rule 13    NUM -> FLOAT
+
+Terminals, with rules where they appear
+
+DIV                  : 5
+FLOAT                : 13
+INT                  : 12
+LEFTPAR              : 11
+MINUS                : 2 8
+MUL                  : 4
+PLUS                 : 1
+POWER                : 7
+RIGHTPAR             : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+E                    : 1 2 11 0
+F                    : 4 5 6 7
+G                    : 7 8 9
+NUM                  : 10
+T                    : 1 2 3 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . E
+    (1) E -> . E PLUS T
+    (2) E -> . E MINUS T
+    (3) E -> . T
+    (4) T -> . T MUL F
+    (5) T -> . T DIV F
+    (6) T -> . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    E                              shift and go to state 1
+    T                              shift and go to state 2
+    F                              shift and go to state 4
+    G                              shift and go to state 5
+    NUM                            shift and go to state 6
+
+state 1
+
+    (0) S' -> E .
+    (1) E -> E . PLUS T
+    (2) E -> E . MINUS T
+
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+
+
+state 2
+
+    (3) E -> T .
+    (4) T -> T . MUL F
+    (5) T -> T . DIV F
+
+    PLUS            reduce using rule 3 (E -> T .)
+    MINUS           reduce using rule 3 (E -> T .)
+    $end            reduce using rule 3 (E -> T .)
+    RIGHTPAR        reduce using rule 3 (E -> T .)
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 3
+
+    (8) F -> MINUS . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    G                              shift and go to state 14
+    NUM                            shift and go to state 6
+
+state 4
+
+    (6) T -> F .
+
+    MUL             reduce using rule 6 (T -> F .)
+    DIV             reduce using rule 6 (T -> F .)
+    PLUS            reduce using rule 6 (T -> F .)
+    MINUS           reduce using rule 6 (T -> F .)
+    $end            reduce using rule 6 (T -> F .)
+    RIGHTPAR        reduce using rule 6 (T -> F .)
+
+
+state 5
+
+    (7) F -> G . POWER F
+    (9) F -> G .
+
+    POWER           shift and go to state 15
+    MUL             reduce using rule 9 (F -> G .)
+    DIV             reduce using rule 9 (F -> G .)
+    PLUS            reduce using rule 9 (F -> G .)
+    MINUS           reduce using rule 9 (F -> G .)
+    $end            reduce using rule 9 (F -> G .)
+    RIGHTPAR        reduce using rule 9 (F -> G .)
+
+
+state 6
+
+    (10) G -> NUM .
+
+    POWER           reduce using rule 10 (G -> NUM .)
+    MUL             reduce using rule 10 (G -> NUM .)
+    DIV             reduce using rule 10 (G -> NUM .)
+    PLUS            reduce using rule 10 (G -> NUM .)
+    MINUS           reduce using rule 10 (G -> NUM .)
+    $end            reduce using rule 10 (G -> NUM .)
+    RIGHTPAR        reduce using rule 10 (G -> NUM .)
+
+
+state 7
+
+    (11) G -> LEFTPAR . E RIGHTPAR
+    (1) E -> . E PLUS T
+    (2) E -> . E MINUS T
+    (3) E -> . T
+    (4) T -> . T MUL F
+    (5) T -> . T DIV F
+    (6) T -> . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    E                              shift and go to state 16
+    T                              shift and go to state 2
+    F                              shift and go to state 4
+    G                              shift and go to state 5
+    NUM                            shift and go to state 6
+
+state 8
+
+    (12) NUM -> INT .
+
+    POWER           reduce using rule 12 (NUM -> INT .)
+    MUL             reduce using rule 12 (NUM -> INT .)
+    DIV             reduce using rule 12 (NUM -> INT .)
+    PLUS            reduce using rule 12 (NUM -> INT .)
+    MINUS           reduce using rule 12 (NUM -> INT .)
+    $end            reduce using rule 12 (NUM -> INT .)
+    RIGHTPAR        reduce using rule 12 (NUM -> INT .)
+
+
+state 9
+
+    (13) NUM -> FLOAT .
+
+    POWER           reduce using rule 13 (NUM -> FLOAT .)
+    MUL             reduce using rule 13 (NUM -> FLOAT .)
+    DIV             reduce using rule 13 (NUM -> FLOAT .)
+    PLUS            reduce using rule 13 (NUM -> FLOAT .)
+    MINUS           reduce using rule 13 (NUM -> FLOAT .)
+    $end            reduce using rule 13 (NUM -> FLOAT .)
+    RIGHTPAR        reduce using rule 13 (NUM -> FLOAT .)
+
+
+state 10
+
+    (1) E -> E PLUS . T
+    (4) T -> . T MUL F
+    (5) T -> . T DIV F
+    (6) T -> . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    T                              shift and go to state 17
+    F                              shift and go to state 4
+    G                              shift and go to state 5
+    NUM                            shift and go to state 6
+
+state 11
+
+    (2) E -> E MINUS . T
+    (4) T -> . T MUL F
+    (5) T -> . T DIV F
+    (6) T -> . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    T                              shift and go to state 18
+    F                              shift and go to state 4
+    G                              shift and go to state 5
+    NUM                            shift and go to state 6
+
+state 12
+
+    (4) T -> T MUL . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    F                              shift and go to state 19
+    G                              shift and go to state 5
+    NUM                            shift and go to state 6
+
+state 13
+
+    (5) T -> T DIV . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    F                              shift and go to state 20
+    G                              shift and go to state 5
+    NUM                            shift and go to state 6
+
+state 14
+
+    (8) F -> MINUS G .
+
+    MUL             reduce using rule 8 (F -> MINUS G .)
+    DIV             reduce using rule 8 (F -> MINUS G .)
+    PLUS            reduce using rule 8 (F -> MINUS G .)
+    MINUS           reduce using rule 8 (F -> MINUS G .)
+    $end            reduce using rule 8 (F -> MINUS G .)
+    RIGHTPAR        reduce using rule 8 (F -> MINUS G .)
+
+
+state 15
+
+    (7) F -> G POWER . F
+    (7) F -> . G POWER F
+    (8) F -> . MINUS G
+    (9) F -> . G
+    (10) G -> . NUM
+    (11) G -> . LEFTPAR E RIGHTPAR
+    (12) NUM -> . INT
+    (13) NUM -> . FLOAT
+
+    MINUS           shift and go to state 3
+    LEFTPAR         shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+
+    G                              shift and go to state 5
+    F                              shift and go to state 21
+    NUM                            shift and go to state 6
+
+state 16
+
+    (11) G -> LEFTPAR E . RIGHTPAR
+    (1) E -> E . PLUS T
+    (2) E -> E . MINUS T
+
+    RIGHTPAR        shift and go to state 22
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+
+
+state 17
+
+    (1) E -> E PLUS T .
+    (4) T -> T . MUL F
+    (5) T -> T . DIV F
+
+    PLUS            reduce using rule 1 (E -> E PLUS T .)
+    MINUS           reduce using rule 1 (E -> E PLUS T .)
+    $end            reduce using rule 1 (E -> E PLUS T .)
+    RIGHTPAR        reduce using rule 1 (E -> E PLUS T .)
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 18
+
+    (2) E -> E MINUS T .
+    (4) T -> T . MUL F
+    (5) T -> T . DIV F
+
+    PLUS            reduce using rule 2 (E -> E MINUS T .)
+    MINUS           reduce using rule 2 (E -> E MINUS T .)
+    $end            reduce using rule 2 (E -> E MINUS T .)
+    RIGHTPAR        reduce using rule 2 (E -> E MINUS T .)
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 19
+
+    (4) T -> T MUL F .
+
+    MUL             reduce using rule 4 (T -> T MUL F .)
+    DIV             reduce using rule 4 (T -> T MUL F .)
+    PLUS            reduce using rule 4 (T -> T MUL F .)
+    MINUS           reduce using rule 4 (T -> T MUL F .)
+    $end            reduce using rule 4 (T -> T MUL F .)
+    RIGHTPAR        reduce using rule 4 (T -> T MUL F .)
+
+
+state 20
+
+    (5) T -> T DIV F .
+
+    MUL             reduce using rule 5 (T -> T DIV F .)
+    DIV             reduce using rule 5 (T -> T DIV F .)
+    PLUS            reduce using rule 5 (T -> T DIV F .)
+    MINUS           reduce using rule 5 (T -> T DIV F .)
+    $end            reduce using rule 5 (T -> T DIV F .)
+    RIGHTPAR        reduce using rule 5 (T -> T DIV F .)
+
+
+state 21
+
+    (7) F -> G POWER F .
+
+    MUL             reduce using rule 7 (F -> G POWER F .)
+    DIV             reduce using rule 7 (F -> G POWER F .)
+    PLUS            reduce using rule 7 (F -> G POWER F .)
+    MINUS           reduce using rule 7 (F -> G POWER F .)
+    $end            reduce using rule 7 (F -> G POWER F .)
+    RIGHTPAR        reduce using rule 7 (F -> G POWER F .)
+
+
+state 22
+
+    (11) G -> LEFTPAR E RIGHTPAR .
+
+    POWER           reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+    MUL             reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+    DIV             reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+    PLUS            reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+    MINUS           reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+    $end            reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+    RIGHTPAR        reduce using rule 11 (G -> LEFTPAR E RIGHTPAR .)
+
